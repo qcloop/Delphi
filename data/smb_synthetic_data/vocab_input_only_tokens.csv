@@ -1,0 +1,20 @@
+index,code,meaning,recommended_threshold_formula,token_type
+59,SECTOR_RETAIL,Retail sector,Attribute token from business category; input-only.,input_only
+60,SECTOR_HOSPITALITY,Hospitality sector,Attribute token from business category; input-only.,input_only
+61,SECTOR_CONSTRUCTION,Construction sector,Attribute token from business category; input-only.,input_only
+62,SECTOR_TRANSPORT,Transportation and logistics sector,Attribute token from business category; input-only.,input_only
+63,SECTOR_MANUFACTURING_SMALL,Small-scale manufacturing sector,Attribute token from business category; input-only.,input_only
+64,SECTOR_PROFESSIONAL_SERVICES,Professional services sector,Attribute token from business category; input-only.,input_only
+65,SECTOR_HEALTHCARE_SMALL,Small healthcare providers,Attribute token from business category; input-only.,input_only
+66,SECTOR_TECH_SERVICES,Technology and IT services sector,Attribute token from business category; input-only.,input_only
+67,SECTOR_OTHER,Other or uncategorized sector,Attribute token from business category; input-only.,input_only
+68,SIZE_MICRO_1_9,Micro business with 1–9 employees,"Attribute token; employees in [1,9] (or revenue proxy). Input-only.",input_only
+69,SIZE_SMALL_10_49,Small business with 10–49 employees,"Attribute token; employees in [10,49] (or revenue proxy). Input-only.",input_only
+70,SIZE_MEDIUM_50_249,Medium business with 50–249 employees,"Attribute token; employees in [50,249] (or revenue proxy). Input-only.",input_only
+71,FORM_SOLE_PROP,Sole proprietorship,Attribute token; legal form is sole proprietorship. Input-only.,input_only
+72,FORM_LLC,Limited liability company,Attribute token; legal form is LLC. Input-only.,input_only
+73,FORM_PARTNERSHIP,Partnership,Attribute token; legal form is partnership. Input-only.,input_only
+74,FORM_PRIVATE_CORP,Private corporation,Attribute token; legal form is private corporation. Input-only.,input_only
+75,REGION_LOCAL,Operates in a local or single-region area,Attribute token; operates in local/single region. Input-only.,input_only
+76,REGION_MULTI_STATE,Operates across multiple states or regions,Attribute token; operates across multiple regions/states. Input-only.,input_only
+77,REGION_INTERNATIONAL_SMALL,Limited international operations,Attribute token; limited international operations. Input-only.,input_only

@@ -1,0 +1,79 @@
+index,code,meaning,recommended_threshold_formula
+0,EXIT_BANKRUPTCY,Formal bankruptcy filing or court-supervised insolvency,Triggered by formal bankruptcy/insolvency filing date in legal/registry data.
+1,EXIT_INSOLVENCY_NO_FILING,Business becomes insolvent without formal bankruptcy filing,"Triggered when business ceases operations with indicators of insolvency (e.g., sustained nonpayment + account closure) but no filing; define as >=90 days past due AND cash runway <1M AND revenue ~0 for >=2 periods."
+2,EXIT_FORCED_CLOSURE,"Business forced to close by creditors, authorities, or landlord","Triggered by documented forced closure event (eviction, license revocation, court order); if proxy: stop in transactions + enforcement action within 60d."
+3,EXIT_DISTRESSED_RESTRUCTURE,Distressed debt or operational restructuring,Triggered by restructuring agreement date; proxy: new repayment plan + principal/interest modification flags.
+4,EXIT_VOLUNTARY_CLOSURE,Owner voluntarily closes the business,Triggered by dissolution/closure registry date without distress flags in prior 90d; proxy: transactions stop + no delinquency/tax arrears.
+5,EXIT_ACQUIRED_SMALL,Business acquired by another small or private entity,Triggered by acquisition/asset sale date recorded; proxy: ownership change + continuity of operations.
+6,EXIT_DATA_CENSORING,Observation ends without known exit outcome,Triggered when observation ends (end of data feed) without exit token; censor at last known active date.
+7,CASH_BALANCE_ZERO,Cash balance reached zero,cash_balance(t) <= 0
+8,CASH_RUNWAY_LT_1M,Cash runway less than one month,"cash_runway_months = cash_balance(t) / max(1, avg_net_cash_burn_3m(t)); token if cash_runway_months < 1"
+9,CASH_RUNWAY_1_3M,Cash runway between one and three months,"cash_runway_months = cash_balance / max(1, avg_net_cash_burn_3m); token if 1 <= runway < 3"
+10,CASH_RUNWAY_3_6M,Cash runway between three and six months,"cash_runway_months = cash_balance / max(1, avg_net_cash_burn_3m); token if 3 <= runway < 6"
+11,CASH_RUNWAY_GT_6M,Cash runway greater than six months,"cash_runway_months = cash_balance / max(1, avg_net_cash_burn_3m); token if runway >= 6"
+12,CASH_VOLATILITY_HIGH,High volatility in cash balances,"cash_vol = std(cash_balance over last 90d) / max(1, mean(cash_balance over last 90d)); token if cash_vol >= 0.5"
+13,CFO_NEG_1_PERIOD,Operating cash flow negative for one period,CFO(t) < 0 (for current period)
+14,CFO_NEG_2_CONSEC,Operating cash flow negative for two consecutive periods,CFO(t) < 0 AND CFO(t-1) < 0
+15,CFO_NEG_4_CONSEC,Operating cash flow negative for four consecutive periods,CFO(t-k) < 0 for k=0..3
+16,CFO_DROP_SHARP,Sharp decline in operating cash flow,"CFO_drop = (CFO(t) - CFO(t-1)) / max(1, abs(CFO(t-1))); token if CFO_drop <= -0.5"
+17,CFO_RECOVERY,Operating cash flow shows recovery,CFO(t) > 0 AND CFO(t-1) < 0 (or 2-period moving average turns positive)
+18,REV_DROP_10_20,Revenue declined by 10–20%,"rev_yoy = (rev(t) - rev(t-12m)) / max(1, rev(t-12m)); token if -0.20 < rev_yoy <= -0.10"
+19,REV_DROP_20_40,Revenue declined by 20–40%,"rev_yoy = (rev(t) - rev(t-12m)) / max(1, rev(t-12m)); token if -0.40 < rev_yoy <= -0.20"
+20,REV_DROP_GT_40,Revenue declined by more than 40%,"rev_yoy = (rev(t) - rev(t-12m)) / max(1, rev(t-12m)); token if rev_yoy <= -0.40"
+21,REV_VOLATILITY_HIGH,High volatility in revenue,"rev_vol = std(rev over last 12m) / max(1, mean(rev over last 12m)); token if rev_vol >= 0.5"
+22,REV_SEASONAL_GAP,Seasonal revenue gap detected,token if rev(t) <= 0.2*median(rev for same month over prior 2y) AND industry_seasonal_flag=1
+23,REV_RECOVERY,Revenue recovery observed,token if rev_yoy >= 0.10 OR (rev(t) > rev(t-1) for 3 consecutive months)
+24,LIQ_CURRENT_RATIO_CRIT,Current ratio at critical low level,"current_ratio = current_assets / max(1, current_liabilities); token if current_ratio < 1.0"
+25,LIQ_CURRENT_RATIO_LOW,Current ratio below healthy range,"current_ratio = current_assets / max(1, current_liabilities); token if 1.0 <= current_ratio < 1.5"
+26,LIQ_CURRENT_RATIO_OK,Current ratio within healthy range,"current_ratio = current_assets / max(1, current_liabilities); token if current_ratio >= 1.5"
+27,LIQ_QUICK_RATIO_CRIT,Quick ratio at critical low level,"quick_ratio = (current_assets - inventory) / max(1, current_liabilities); token if quick_ratio < 0.8"
+28,LIQ_QUICK_RATIO_LOW,Quick ratio below healthy range,"quick_ratio = (current_assets - inventory) / max(1, current_liabilities); token if 0.8 <= quick_ratio < 1.0"
+29,BANK_OVERDRAFT_ACTIVE,Active bank overdraft usage,token if overdraft_balance(t) > 0 OR account_balance(t) < 0
+30,BANK_OVERDRAFT_LIMIT_BREACH,Overdraft limit breached,token if overdraft_balance(t) > overdraft_limit(t) OR account_balance(t) < -overdraft_limit(t)
+31,BANK_CREDIT_LINE_FROZEN,Bank credit line frozen,token if credit_line_available(t) == 0 AND credit_line_limit(t) > 0 (or bank freeze flag)
+32,BANK_LOAN_RESTRUCTURE_REQUEST,Request made to restructure bank loan,token if restructure_request_flag==1 OR hardship_application==1
+33,BANK_LOAN_RESTRUCTURE_DENIED,Bank denied loan restructuring request,token if restructure_denied_flag==1
+34,BANK_ACCOUNT_RESTRICTED,Bank account restricted or frozen,token if account_restricted_flag==1 OR freezes/holds prevent outgoing payments
+35,PAY_DPD_15PLUS,Payments more than 15 days past due,dpd = days_past_due(invoice); token if max_dpd_last30d >= 15
+36,PAY_DPD_30PLUS,Payments more than 30 days past due,token if max_dpd_last30d >= 30
+37,PAY_DPD_60PLUS,Payments more than 60 days past due,token if max_dpd_last60d >= 60
+38,PAY_DPD_90PLUS,Payments more than 90 days past due,token if max_dpd_last90d >= 90
+39,PAY_MISSED_PAYMENT,One or more payments missed,token if scheduled_payment_missed_in_period==1
+40,PAY_SUPPLIER_TERMS_TIGHTENED,Suppliers tightened payment terms,"token if avg_days_to_pay decreases by >=20% AND suppliers shorten net terms, or credit limit reductions observed"
+41,PAY_COLLECTION_ACTION,Collections or debt recovery action initiated,token if collection_notice==1 OR account_sent_to_collections==1 OR chargeoff_flag==1
+42,TAX_LIABILITY_OVERDUE,Tax liabilities overdue,token if tax_due_amount>0 AND tax_due_date < t AND days_overdue >= 30
+43,TAX_PAYMENT_PLAN_STARTED,Tax payment plan initiated,token if tax_installment_plan_flag==1 (start date)
+44,TAX_PAYMENT_PLAN_FAILED,Tax payment plan failed,token if tax_plan_default_flag==1 OR missed >=2 installments
+45,PAYROLL_DELAYED,Payroll payments delayed,token if payroll_date_slip_days >= 7 OR payroll_processed_after_due_date
+46,PAYROLL_MISSED,Payroll payments missed,token if payroll_not_paid_flag==1 OR missed >=1 payroll cycle
+47,LEGAL_LIEN_FILED,Legal lien filed against business,token if lien_filed_flag==1 (filing date)
+48,LEGAL_JUDGMENT_ENTERED,Court judgment entered against business,token if court_judgment_flag==1 (judgment date)
+49,LEGAL_ENFORCEMENT_ACTION,Regulatory or enforcement action taken,token if regulator_action_flag==1 OR enforcement_notice==1
+50,OWNER_EXIT,Owner exited the business,token if owner_change_flag==1 AND owner leaves operational control
+51,OWNER_ILLNESS,Owner illness impacting business operations,token if owner_illness_flag==1 OR prolonged owner absence >=30d
+52,KEY_PERSON_LOSS,Loss of key employee or manager,token if key_employee_departure_flag==1 OR role vacancy >=60d
+53,MANAGEMENT_TURNOVER_HIGH,High management turnover observed,token if >=2 senior departures in 12 months OR turnover_rate_senior >= 0.3
+54,COST_CUT_MAJOR,Major cost-cutting actions taken,token if opex_reduction >= 0.20 over 2 periods OR cost_cut_program_flag==1
+55,LAYOFF_SIGNIFICANT,Significant layoffs implemented,token if headcount_drop >= 0.10 in 1 quarter OR layoffs_flag==1
+56,ASSET_SALE_DISTRESS,Distressed sale of business assets,token if asset_sale_flag==1 AND (sale_proceeds < 0.7*book_value OR sale_due_to_liquidity_flag==1)
+57,NO_EVENT,No significant business event observed,"Insert at fixed cadence (e.g., monthly or quarterly) when no other event tokens emitted at that timestamp."
+58,PAD,Padding token for sequence alignment,Technical padding only; not emitted from data.
+59,SECTOR_RETAIL,Retail sector,Attribute token from business category; input-only.
+60,SECTOR_HOSPITALITY,Hospitality sector,Attribute token from business category; input-only.
+61,SECTOR_CONSTRUCTION,Construction sector,Attribute token from business category; input-only.
+62,SECTOR_TRANSPORT,Transportation and logistics sector,Attribute token from business category; input-only.
+63,SECTOR_MANUFACTURING_SMALL,Small-scale manufacturing sector,Attribute token from business category; input-only.
+64,SECTOR_PROFESSIONAL_SERVICES,Professional services sector,Attribute token from business category; input-only.
+65,SECTOR_HEALTHCARE_SMALL,Small healthcare providers,Attribute token from business category; input-only.
+66,SECTOR_TECH_SERVICES,Technology and IT services sector,Attribute token from business category; input-only.
+67,SECTOR_OTHER,Other or uncategorized sector,Attribute token from business category; input-only.
+68,SIZE_MICRO_1_9,Micro business with 1–9 employees,"Attribute token; employees in [1,9] (or revenue proxy). Input-only."
+69,SIZE_SMALL_10_49,Small business with 10–49 employees,"Attribute token; employees in [10,49] (or revenue proxy). Input-only."
+70,SIZE_MEDIUM_50_249,Medium business with 50–249 employees,"Attribute token; employees in [50,249] (or revenue proxy). Input-only."
+71,FORM_SOLE_PROP,Sole proprietorship,Attribute token; legal form is sole proprietorship. Input-only.
+72,FORM_LLC,Limited liability company,Attribute token; legal form is LLC. Input-only.
+73,FORM_PARTNERSHIP,Partnership,Attribute token; legal form is partnership. Input-only.
+74,FORM_PRIVATE_CORP,Private corporation,Attribute token; legal form is private corporation. Input-only.
+75,REGION_LOCAL,Operates in a local or single-region area,Attribute token; operates in local/single region. Input-only.
+76,REGION_MULTI_STATE,Operates across multiple states or regions,Attribute token; operates across multiple regions/states. Input-only.
+77,REGION_INTERNATIONAL_SMALL,Limited international operations,Attribute token; limited international operations. Input-only.

@@ -1,0 +1,2 @@
+index,code,meaning,recommended_threshold_formula,token_type
+58,PAD,Padding token for sequence alignment,Technical padding only; not emitted from data.,technical
