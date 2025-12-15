@@ -1,0 +1,23 @@
+2025-12-15 11:38:09,643 INFO    MainThread:49470 [wandb_setup.py:_flush():80] Current SDK version is 0.23.1
+2025-12-15 11:38:09,643 INFO    MainThread:49470 [wandb_setup.py:_flush():80] Configure stats pid to 49470
+2025-12-15 11:38:09,643 INFO    MainThread:49470 [wandb_setup.py:_flush():80] Loading settings from /Users/uzokirov/.config/wandb/settings
+2025-12-15 11:38:09,644 INFO    MainThread:49470 [wandb_setup.py:_flush():80] Loading settings from /Users/uzokirov/Development/Thirdparty/LLM/Delphi/wandb/settings
+2025-12-15 11:38:09,644 INFO    MainThread:49470 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-12-15 11:38:09,644 INFO    MainThread:49470 [wandb_init.py:setup_run_log_directory():714] Logging user logs to /Users/uzokirov/Development/Thirdparty/LLM/Delphi/wandb/offline-run-20251215_113809-w1cz1wgz/logs/debug.log
+2025-12-15 11:38:09,644 INFO    MainThread:49470 [wandb_init.py:setup_run_log_directory():715] Logging internal logs to /Users/uzokirov/Development/Thirdparty/LLM/Delphi/wandb/offline-run-20251215_113809-w1cz1wgz/logs/debug-internal.log
+2025-12-15 11:38:09,644 INFO    MainThread:49470 [wandb_init.py:init():841] calling init triggers
+2025-12-15 11:38:09,644 INFO    MainThread:49470 [wandb_init.py:init():846] wandb.init called with sweep_config: {}
+config: {'out_dir': 'smb-synthetic-1', 'eval_interval': 50, 'log_interval': 100, 'eval_iters': 100, 'eval_only': False, 'always_save_checkpoint': False, 'init_from': 'scratch', 'seed': 42, 'wandb_log': True, 'wandb_project': 'delphi_smb', 'wandb_run_name': 'smb_1765827484.744482', 'dataset': 'smb_synthetic_data', 'gradient_accumulation_steps': 1, 'batch_size': 128, 'block_size': 24, 'n_layer': 12, 'n_head': 12, 'n_embd': 120, 'dropout': 0.1, 'bias': False, 'vocab_size': 78, 'learning_rate': 0.0003, 'max_iters': 200000, 'weight_decay': 0.2, 'beta1': 0.9, 'beta2': 0.99, 'grad_clip': 1.0, 'decay_lr': True, 'warmup_iters': 5000, 'lr_decay_iters': 200000, 'min_lr': 3e-05, 'device': 'cpu', 'dtype': 'float32', 'compile': False, 'token_dropout': 0.0, 't_min': 0.1, 'mask_ties': True, 'data_fraction': 1.0, 'no_event_token_rate': 5, '_wandb': {}}
+2025-12-15 11:38:09,644 INFO    MainThread:49470 [wandb_init.py:init():889] starting backend
+2025-12-15 11:38:09,895 INFO    MainThread:49470 [wandb_init.py:init():892] sending inform_init request
+2025-12-15 11:38:09,924 INFO    MainThread:49470 [wandb_init.py:init():900] backend started and connected
+2025-12-15 11:38:09,934 INFO    MainThread:49470 [wandb_init.py:init():970] updated telemetry
+2025-12-15 11:38:09,949 INFO    MainThread:49470 [wandb_init.py:init():994] communicating run to backend with 90.0 second timeout
+2025-12-15 11:38:10,058 INFO    MainThread:49470 [wandb_init.py:init():1041] starting run threads in backend
+2025-12-15 11:38:10,092 INFO    MainThread:49470 [wandb_run.py:_console_start():2521] atexit reg
+2025-12-15 11:38:10,092 INFO    MainThread:49470 [wandb_run.py:_redirect():2369] redirect: wrap_raw
+2025-12-15 11:38:10,092 INFO    MainThread:49470 [wandb_run.py:_redirect():2438] Wrapping output streams.
+2025-12-15 11:38:10,092 INFO    MainThread:49470 [wandb_run.py:_redirect():2461] Redirects installed.
+2025-12-15 11:38:10,093 INFO    MainThread:49470 [wandb_init.py:init():1081] run started, returning control to user process
+2025-12-15 11:38:10,099 INFO    wandb-AsyncioManager-main:49470 [service_client.py:_forward_responses():80] Reached EOF.
+2025-12-15 11:38:10,099 INFO    wandb-AsyncioManager-main:49470 [mailbox.py:close():137] Closing mailbox, abandoning 0 handles.

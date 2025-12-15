@@ -37,7 +37,7 @@ n_head = 6
 n_embd = 96
 dropout = 0.2  # for pretraining 0 is good, for finetuning try 0.1+
 bias = False  # do we use bias inside LayerNorm and Linear layers?
-vocab_size = 256
+vocab_size = 78
 
 # adamw optimizer
 learning_rate = 6e-4  # max learning rate
@@ -74,6 +74,7 @@ config = {k: globals()[k] for k in config_keys}  # will be useful for logging
 # -----------------------------------------------------------------------------
 
 os.makedirs(out_dir, exist_ok=True)
+print(f"created output directory {out_dir}")
 torch.manual_seed(seed)
 #torch.backends.cuda.matmul.fp32_precision = 'tf32'
 #torch.backends.cudnn.conv.fp32_precision = 'tf32'
@@ -115,6 +116,7 @@ if init_from == 'scratch':
     # determine the vocab size we'll use for from-scratch training
     gptconf = DelphiConfig(**model_args)
     model = Delphi(gptconf)
+    print(f"Initializing training in {out_dir} with {gptconf}")
 elif init_from == 'resume':
     print(f"Resuming training from {out_dir}")
     # resume training from a checkpoint.
