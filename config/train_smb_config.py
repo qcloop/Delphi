@@ -1,42 +1,38 @@
+
 import time
 
 out_dir = 'smb_delphi'
-eval_interval = 500
-eval_iters = 100
-log_interval = 100
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 25
+log_interval = 25 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
 always_save_checkpoint = False
 
-wandb_log = False
-wandb_project = 'delphi_smb'
-wandb_run_name = 'smb_' + str(time.time())
+wandb_log = False # override via command line if you like
+wandb_project = 'smb_delphi'
+wandb_run_name = 'run' + str(time.time())
 
-dataset = 'smb'
+dataset = 'smb_synthetic_data'
+batch_size = 128
+block_size = 48
+data_fraction = 1.0
 
-vocab_size = 78
-
-ignore_tokens = [0, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77]
-
-# Model size (Delphi-2M-like)
 n_layer = 12
 n_head = 12
 n_embd = 120
 dropout = 0.1
-
-# Optimizer / LR schedule
-learning_rate = 3e-4
-max_iters = 200_000
-lr_decay_iters = 200_000
-min_lr = 3e-5
-warmup_iters = 5_000
 weight_decay = 2e-1
-beta2 = 0.99
+vocab_size = 79
 
-# Delphi time-to-event stability + regularization
+learning_rate = 2e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 2e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 500 # not super necessary potentially
+ignore_tokens = [0, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77]
 t_min = 0.1
 token_dropout = 0.0
-
-# Recommended for SMB (prevents same-timestamp leakage)
-mask_ties = True
-
-# Kept for compatibility with Delphi scripts
 no_event_token_rate = 5

@@ -207,6 +207,12 @@ ix = torch.randint(len(train_p2i), (batch_size,))
 X, A, Y, B = get_batch(ix, train_data, train_p2i, block_size=block_size, device=device,
                        padding='random', lifestyle_augmentations=True, select='left',
                        no_event_token_rate=no_event_token_rate)
+
+#print(f"get_batch X {X} {X.shape}")
+#print(f"get_batch A {A} {A.shape}")
+#print(f"get_batch Y {Y} {Y.shape}")
+#print(f"get_batch B {B} {B.shape}")
+
 t0 = time.time()
 local_iter_num = 0  # number of iterations in the lifetime of this process
 

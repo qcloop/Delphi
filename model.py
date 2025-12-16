@@ -130,11 +130,12 @@ class AgeEncoding(nn.Module):
         Arguments:
             x: Tensor, shape ``[seq_len, batch_size, embedding_dim]``
         """
+       # print(f"AgeEncoding {x.shape}")
         y = torch.zeros(x.shape[0], x.shape[1], self.n_embd, device=x.device)
         y[..., 0::2] = torch.sin(x / 365.25 * self.div_term) #* (1-self.div_term)
         y[..., 1::2] = torch.cos(x /365.25 * self.div_term) #* (1-self.div_term)
         y = self.linear(y)
-        
+      #  print(f"AgeEncoding exit {y}")
         #x = self.wae[:x.size(0)]
         return y #self.dropout(x)
     
@@ -159,7 +160,7 @@ class Delphi(nn.Module):
         assert config.vocab_size is not None
         assert config.block_size is not None
         self.config = config
-
+        print(f"delphi->init {config}")
         self.transformer = nn.ModuleDict(dict(
             wte = nn.Embedding(config.vocab_size, config.n_embd),
             #wpe = nn.Embedding(config.block_size, config.n_embd),
@@ -171,6 +172,8 @@ class Delphi(nn.Module):
             h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
             ln_f = LayerNorm(config.n_embd, bias=config.bias),
         ))
+
+        print(f"transformer->wte {self.transformer.wte.weight.shape}")
         self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
         # with weight tying when using torch.compile() some warnings get generated:
         # "UserWarning: functional_call was passed multiple values for tied weights.
@@ -214,7 +217,10 @@ class Delphi(nn.Module):
         #assert t <= self.config.block_size, f"Cannot forward sequence of length {t}, block size is only {self.config.block_size}"
         # pos = torch.arange(0, t, dtype=torch.long, device=device).unsqueeze(0) # shape (1, t)
         # forward the GPT model itself
-        print(idx.shape, age.shape)
+        #print(f"forward {idx.shape}, {age.shape}")
+        #print("vocab_size", self.config.vocab_size)
+        #print("idx min/max", idx.min().item(), idx.max().item())
+        #print("bad idx values", idx[(idx < 0) | (idx >= self.config.vocab_size)][:20])
         tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, t, n_embd)
         #pos_emb = self.transformer.wpe(pos) # position embeddings of shape (1, t, n_embd)
         age_emb = self.transformer.wae(age.unsqueeze(-1)) # age embeddings of shape (b, t, n_embd)
