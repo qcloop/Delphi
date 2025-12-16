@@ -152,10 +152,12 @@ class DelphiConfig:
     bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
     mask_ties: bool = False
     ignore_tokens: list = field(default_factory=lambda: [0])
+    out_dir: str = "out"
 
 class Delphi(nn.Module):
 
     def __init__(self, config):
+        print(f"delphi->init {config}")
         super().__init__()
         assert config.vocab_size is not None
         assert config.block_size is not None

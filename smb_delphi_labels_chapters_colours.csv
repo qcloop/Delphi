@@ -1,0 +1,79 @@
+index,name,count,SMB Chapter,SMB Chapter (short),color
+0,Padding,0,Technical,Technical,#2a52be
+1,No event,0,No-event process,No event,#1f77b4
+2,Exit Bankruptcy,0,Exit outcomes,Exit,#d62728
+3,Exit Insolvency No Filing,0,Exit outcomes,Exit,#d62728
+4,Exit Forced Closure,0,Exit outcomes,Exit,#d62728
+5,Exit Distressed Restructure,0,Exit outcomes,Exit,#d62728
+6,Exit Voluntary Closure,0,Exit outcomes,Exit,#d62728
+7,Exit Acquired Small,0,Exit outcomes,Exit,#d62728
+8,Exit Data Censoring,0,Exit outcomes,Exit,#d62728
+9,Cash Balance Zero,0,Cash & liquidity,Liquidity,#17becf
+10,Cash Runway < 1M,0,Cash & liquidity,Liquidity,#17becf
+11,Cash Runway 1 3M,0,Cash & liquidity,Liquidity,#17becf
+12,Cash Runway 3 6M,0,Cash & liquidity,Liquidity,#17becf
+13,Cash Runway > 6M,0,Cash & liquidity,Liquidity,#17becf
+14,Cash Volatility High,0,Cash & liquidity,Liquidity,#17becf
+15,CFO Neg 1 Period,0,Operating cash flow,Cashflow,#9467bd
+16,CFO Neg 2 Consec,0,Operating cash flow,Cashflow,#9467bd
+17,CFO Neg 4 Consec,0,Operating cash flow,Cashflow,#9467bd
+18,CFO Drop Sharp,0,Operating cash flow,Cashflow,#9467bd
+19,CFO Recovery,0,Operating cash flow,Cashflow,#9467bd
+20,Rev Drop 10 20,0,Revenue & demand,Revenue,#ff7f0e
+21,Rev Drop 20 40,0,Revenue & demand,Revenue,#ff7f0e
+22,Rev Drop > 40,0,Revenue & demand,Revenue,#ff7f0e
+23,Rev Volatility High,0,Revenue & demand,Revenue,#ff7f0e
+24,Rev Seasonal Gap,0,Revenue & demand,Revenue,#ff7f0e
+25,Rev Recovery,0,Revenue & demand,Revenue,#ff7f0e
+26,Liq Current Ratio Crit,0,Cash & liquidity,Liquidity,#17becf
+27,Liq Current Ratio Low,0,Cash & liquidity,Liquidity,#17becf
+28,Liq Current Ratio Ok,0,Cash & liquidity,Liquidity,#17becf
+29,Liq Quick Ratio Crit,0,Cash & liquidity,Liquidity,#17becf
+30,Liq Quick Ratio Low,0,Cash & liquidity,Liquidity,#17becf
+31,Bank Overdraft Active,0,Bank relationship & credit,Bank,#8c564b
+32,Bank Overdraft Limit Breach,0,Bank relationship & credit,Bank,#8c564b
+33,Bank Credit Line Frozen,0,Bank relationship & credit,Bank,#8c564b
+34,Bank Loan Restructure Request,0,Bank relationship & credit,Bank,#8c564b
+35,Bank Loan Restructure Denied,0,Bank relationship & credit,Bank,#8c564b
+36,Bank Account Restricted,0,Bank relationship & credit,Bank,#8c564b
+37,Pay DPD 15Plus,0,Payments & delinquencies,Payments,#e377c2
+38,Pay DPD 30Plus,0,Payments & delinquencies,Payments,#e377c2
+39,Pay DPD 60Plus,0,Payments & delinquencies,Payments,#e377c2
+40,Pay DPD 90Plus,0,Payments & delinquencies,Payments,#e377c2
+41,Pay Missed Payment,0,Payments & delinquencies,Payments,#e377c2
+42,Pay Supplier Terms Tightened,0,Payments & delinquencies,Payments,#e377c2
+43,Pay Collection Action,0,Payments & delinquencies,Payments,#e377c2
+44,Tax Liability Overdue,0,Tax & payroll stress,Tax/Payroll,#7f7f7f
+45,Tax Payment Plan Started,0,Tax & payroll stress,Tax/Payroll,#7f7f7f
+46,Tax Payment Plan Failed,0,Tax & payroll stress,Tax/Payroll,#7f7f7f
+47,Payroll Delayed,0,Tax & payroll stress,Tax/Payroll,#7f7f7f
+48,Payroll Missed,0,Tax & payroll stress,Tax/Payroll,#7f7f7f
+49,Legal Lien Filed,0,Legal & enforcement,Legal,#c7c7c7
+50,Legal Judgment Entered,0,Legal & enforcement,Legal,#c7c7c7
+51,Legal Enforcement Action,0,Legal & enforcement,Legal,#c7c7c7
+52,Owner Exit,0,Owner & key-person risk,Key person,#2ca02c
+53,Owner Illness,0,Owner & key-person risk,Key person,#2ca02c
+54,Key Person Loss,0,Owner & key-person risk,Key person,#2ca02c
+55,Management Turnover High,0,Owner & key-person risk,Key person,#2ca02c
+56,Cost Cut Major,0,Distress responses,Responses,#aec7e8
+57,Layoff Significant,0,Distress responses,Responses,#aec7e8
+58,Asset Sale Distress,0,Distress responses,Responses,#aec7e8
+59,Sector Retail,0,Firm attributes,Attributes,#bcbd22
+60,Sector Hospitality,0,Firm attributes,Attributes,#bcbd22
+61,Sector Construction,0,Firm attributes,Attributes,#bcbd22
+62,Sector Transport,0,Firm attributes,Attributes,#bcbd22
+63,Sector Manufacturing Small,0,Firm attributes,Attributes,#bcbd22
+64,Sector Professional Services,0,Firm attributes,Attributes,#bcbd22
+65,Sector Healthcare Small,0,Firm attributes,Attributes,#bcbd22
+66,Sector Tech Services,0,Firm attributes,Attributes,#bcbd22
+67,Sector Other,0,Firm attributes,Attributes,#bcbd22
+68,Size Micro 1 9,0,Firm attributes,Attributes,#bcbd22
+69,Size Small 10 49,0,Firm attributes,Attributes,#bcbd22
+70,Size Medium 50 249,0,Firm attributes,Attributes,#bcbd22
+71,Form Sole Prop,0,Firm attributes,Attributes,#bcbd22
+72,Form Llc,0,Firm attributes,Attributes,#bcbd22
+73,Form Partnership,0,Firm attributes,Attributes,#bcbd22
+74,Form Private Corp,0,Firm attributes,Attributes,#bcbd22
+75,Region Local,0,Firm attributes,Attributes,#bcbd22
+76,Region Multi State,0,Firm attributes,Attributes,#bcbd22
+77,Region International Small,0,Firm attributes,Attributes,#bcbd22
